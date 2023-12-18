@@ -2,34 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Providers\StudentService;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use App\Providers\StudentServiceProvider;
+use Illuminate\Support\Str;
 
 class StudentController extends Controller
 {
     protected $studentService;
 
-    public function __construct(StudentServiceProvider $studentService)
+    public function __construct(StudentService $studentService)
     {
         $this->studentService = $studentService;
     }
 
-    public function listStudents(): JsonResponse
+    public function list_students(): JsonResponse
     {
         $students = $this->studentService->getAllStudents();
         return response()->json($students, 200);
     }
 
-    public function retrieveStudent($id): JsonResponse
+    public function retrieve_student($id): JsonResponse
     {
         $student = $this->studentService->getStudentById($id);
         return response()->json($student, 200);
     }
 
-    public function createStudent(Request $request): JsonResponse
+    public function create_student(Request $request): JsonResponse
     {
         $validatedData = $request->validate([
+            'identification_number' => 'required',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'date_of_birth' => 'required|date',
@@ -40,7 +42,7 @@ class StudentController extends Controller
         return response()->json($student, 201);
     }
 
-    public function patchStudent(Request $request, $id)
+    public function patch_student(Request $request, $id)
     {
         $validatedData = $request->validate([
             'first_name' => 'required|string|max:255',
@@ -53,7 +55,7 @@ class StudentController extends Controller
         return response()->json($student, 200);
     }
 
-    public function deleteStudent($id): JsonResponse
+    public function delete_student($id): JsonResponse
     {
         $this->studentService->deleteStudent($id);
 

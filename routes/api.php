@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +25,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 /**
  * Student API Routes
  */
-Route::get('/student', [StudentController::class, 'listStudents']);
-Route::get('/student', [StudentController::class, 'createStudent']);
-Route::get('/student/{id}', [StudentController::class, 'retrieveStudent']);
-Route::patch('/student/{id}', [StudentController::class, 'patchStudent']);
-Route::delete('/student/{id}', [StudentController::class, 'deleteStudent']);
+Route::get('/student', [StudentController::class, 'list_students']);
+Route::post('/student', [StudentController::class, 'create_student']);
+Route::get('/student/{id}', [StudentController::class, 'retrieve_student']);
+Route::patch('/student/{id}', [StudentController::class, 'patch_student']);
+Route::delete('/student/{id}', [StudentController::class, 'delete_student']);
+
+
+/**
+ * Teacher API Routess
+ */
+Route::get('/teacher', [TeacherController::class, 'index']);

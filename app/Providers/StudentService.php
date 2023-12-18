@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use App\Models\Student;
 
-class StudentServiceProvider extends ServiceProvider
+
+class StudentService
 {
     /**
      * Register services.
