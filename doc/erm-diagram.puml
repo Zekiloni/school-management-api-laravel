@@ -12,6 +12,7 @@ abstract class Person {
    -address: string
 }
 
+
 class Teacher {
    -subjects: list<Subject>
    
@@ -21,7 +22,6 @@ class Student {
    -enrolled_classes: list<Class>
    -grades: list<Grade>
    +assignGrade(teacher: Teacher, subject: Subject, grade: Grade): void
-
 }
 
 class Class {
