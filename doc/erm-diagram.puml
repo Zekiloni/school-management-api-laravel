@@ -1,0 +1,55 @@
+@startuml "school management erm diagram"
+
+abstract class Person {
+   -id: number
+   -identification_number: string
+   -first_name: string
+   -last_name: string
+   -date_of_birth: date
+   -sex: string
+   -email: string
+   -phone_number: string
+   -address: string
+}
+
+class Teacher {
+   -subjects: list<Subject>
+   
+}
+
+class Student {
+   -enrolled_classes: list<Class>
+   -grades: list<Grade>
+   +assignGrade(teacher: Teacher, subject: Subject, grade: Grade): void
+
+}
+
+class Class {
+   -name: string
+   -description: string
+   -teacher: Teacher
+   +getStudents(): list<Student>
+}
+
+class Subject {
+   -name: string
+   -description: string
+   +getTeachers(): list<Teacher>
+}
+
+class Grade {
+   -subject: Subject
+   -grade: string
+   -remarks: string
+}
+
+Person <|-- Teacher
+Person <|-- Student
+
+Student --|> Class : 0..*
+Student --|> Grade : 0..*
+Grade --|> Subject : 0..1
+Teacher --|> Subject : 0..*
+Teacher --|> Class : 0..*
+
+@enduml
