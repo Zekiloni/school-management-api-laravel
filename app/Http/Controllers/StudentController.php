@@ -18,13 +18,13 @@ class StudentController extends Controller
     public function listStudents(): JsonResponse
     {
         $students = $this->studentService->getAllStudents();
-        return response()->json($students);
+        return response()->json($students, 200);
     }
 
     public function retrieveStudent($id): JsonResponse
     {
         $student = $this->studentService->getStudentById($id);
-        return response()->json($student);
+        return response()->json($student, 200);
     }
 
     public function createStudent(Request $request): JsonResponse
