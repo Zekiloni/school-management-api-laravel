@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Providers\StudentService;
 use App\Rules\PhoneNumber;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -35,10 +36,13 @@ class StudentController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'date_of_birth' => 'required|date',
+            'grade_level' => 'required|numeric',
             'email' => 'required|email',
             'phone_number' => 'required',
             'address' => 'required'
         ]);
+
+        Log::info('Create Student Validated Data: ', $validatedData);
 
         $student = $this->studentService->createStudent($validatedData);
 
