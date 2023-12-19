@@ -14,11 +14,12 @@ class StudentControllerTest extends TestCase
     public function test_can_create_student()
     {
         $payload = [
-            'identification_number' => $this->faker->uuid,
+            'identification_number' => $this->faker->uuid(),
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'date_of_birth' => $this->faker->date,
             'sex' => $this->faker->randomElement(['male', 'female']),
+            'grade_level' => 1,
             'email' => $this->faker->unique()->safeEmail,
             'phone_number' => $this->faker->phoneNumber,
             'address' => $this->faker->address,
