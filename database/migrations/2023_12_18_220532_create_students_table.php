@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('identification_number');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->date('date_of_birth');
-            $table->enum('sex', ['male', 'female']);
-            $table->string('email');
-            $table->string('phone_number');
-            $table->text('address');
+            $table->string('identification_number')->nullable(false);
+            $table->string('first_name')->nullable(false);
+            $table->string('last_name')->nullable(false);
+            $table->date('date_of_birth')->nullable(false);
+            $table->enum('sex', ['male', 'female'])->nullable(false);
+            $table->string('email')->nullable(false);
+            $table->string('phone_number')->nullable(false);
+            $table->text('address')->nullable(false);
+            $table->integer('grade_level')->max(5)->min(1)->default(1)->nullable(false);
             $table->timestamps();
         });
     }
@@ -31,7 +32,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('students', function (Blueprint $table) {
-            Schema::dropIfExists('people');
+            Schema::dropIfExists('students');
         });
     }
 };

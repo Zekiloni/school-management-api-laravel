@@ -21,6 +21,7 @@ class StudentFactory extends Factory
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'date_of_birth' => $this->faker->date,
+            'grade_level' => $this->faker->randomNumber(1),
             'sex' => $this->faker->randomElement(['male', 'female']),
             'email' => $this->faker->unique()->safeEmail,
             'phone_number' => $this->faker->phoneNumber(),
