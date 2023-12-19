@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('email')->nullable(false);
             $table->string('phone_number')->nullable(false);
             $table->text('address')->nullable(false);
-            $table->integer('grade_level')->max(5)->min(1)->default(1)->nullable(false);
+            $table->unsignedInteger('grade_level')->nullable(false)->default(1)->min(1)->max(5);
             $table->timestamps();
         });
     }
