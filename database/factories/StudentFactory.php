@@ -18,12 +18,12 @@ class StudentFactory extends Factory
     {
         return [
             'identification_number' => $this->faker->uuid(),
-            'first_name' => $this->faker->firstName,
-            'last_name' => $this->faker->lastName,
-            'date_of_birth' => $this->faker->date,
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'date_of_birth' => $this->faker->date(),
             'grade_level' => $this->faker->numberBetween(1, 5),
             'sex' => $this->faker->randomElement(['male', 'female']),
-            'email' => $this->faker->unique()->safeEmail,
+            'email' => $this->faker->unique()->safeEmail(),
             'phone_number' => $this->faker->phoneNumber(),
             'address' => $this->faker->streetAddress(),
         ];

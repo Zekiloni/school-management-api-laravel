@@ -32,7 +32,7 @@ class StudentController extends Controller
     public function create_student(Request $request): JsonResponse
     {
         $validatedData = $request->validate([
-            'identification_number' => 'required',
+            'identification_number' => 'required|string|min:6',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'date_of_birth' => 'required|date',
@@ -42,7 +42,7 @@ class StudentController extends Controller
             'address' => 'required'
         ]);
 
-        Log::info('Create Student Validated Data: ', $validatedData);
+        Log::debug('Create Student Validated Data: ', $validatedData);
 
         $student = $this->studentService->createStudent($validatedData);
 
