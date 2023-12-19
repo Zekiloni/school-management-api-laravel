@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Providers\StudentService;
+use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Illuminate\Support\Str;
 
 class StudentController extends Controller
 {
@@ -35,6 +35,9 @@ class StudentController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'date_of_birth' => 'required|date',
+            'email' => 'required|email',
+            'phone_number' => 'required',
+            'address' => 'required'
         ]);
 
         $student = $this->studentService->createStudent($validatedData);
@@ -59,6 +62,6 @@ class StudentController extends Controller
     {
         $this->studentService->deleteStudent($id);
 
-        return response()->json(['message' => 'Student deleted successfully'], 204);
+        return response()->json(['message' => 'student deleted successfully'], 204);
     }
 }
