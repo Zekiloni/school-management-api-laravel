@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use App\Models\Student;
+use Illuminate\Support\Facades\Log;
 
 class StudentControllerTest extends TestCase
 {
@@ -25,10 +26,22 @@ class StudentControllerTest extends TestCase
             'address' => $this->faker->address,
         ];
 
+        Log::info("CreateStudentTestPayload", $payload);
+
         $response = $this->post('/api/student', $payload);
 
         $response->assertStatus(201);
         $this->assertDatabaseHas('students', $payload);
+    }
+
+    public function test_can_create_student_invalid()
+    {
+        $payload = [
+            'something_invalid' => "true"
+        ];
+
+        $response = $this->post('/api/student', $payload);
+        $response->assertStatus(302);
     }
 
 
