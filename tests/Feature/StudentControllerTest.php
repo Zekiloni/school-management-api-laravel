@@ -38,7 +38,7 @@ class StudentControllerTest extends TestCase
         $response = $this->get('/api/student');
 
         $response->assertStatus(200);
-        $response->assertJsonCount(3);
+        $response->assertJsonCount($students->count());
     }
 
     public function test_can_retrieve_student()
