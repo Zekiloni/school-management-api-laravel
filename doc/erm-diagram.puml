@@ -14,17 +14,17 @@ abstract class Person {
 
 
 class Teacher {
-   -subjects: list<Subject>
+   -courses: list<Course>
 }
 
 class Student {
    -gradeLevel: number
    -enrolled_classes: list<Course>
    -grades: list<Grade>
-   +assignGrade(teacher: Teacher, subject: Subject, grade: Grade): void
+   +assignGrade(teacher: Teacher, course: Course, grade: Grade): void
 }
 
-class Subject {
+class Course {
    -name: string
    -description: string
    +getTeachers(): list<Teacher>
@@ -32,7 +32,7 @@ class Subject {
 }
 
 class Enrollment {
-   -subject: Subject
+   -course: Course
    -grade: string
    -remarks: string
 }
@@ -41,7 +41,7 @@ Person <|-- Teacher
 Person <|-- Student
 
 Student --|> Enrollment : 0..*
-Enrollment --|> Subject : 0..1
-Teacher --|> Subject : 0..*
+Enrollment --|> Course : 0..1
+Teacher --|> Course : 0..*
 
 @enduml

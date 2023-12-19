@@ -5,8 +5,8 @@ namespace App\Models;
 class Teacher extends Person
 {
 
-   public function subjects()
+   public function courses()
    {
-      return $this->belongsToMany(Subject::class);
+      return $this->belongsToMany(Course::class);
    }
 }
