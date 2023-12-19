@@ -17,14 +17,14 @@ class StudentFactory extends Factory
     public function definition()
     {
         return [
-            'identification_number' => $this->faker->uuid,
+            'identification_number' => $this->faker->uuid(),
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'date_of_birth' => $this->faker->date,
             'sex' => $this->faker->randomElement(['male', 'female']),
             'email' => $this->faker->unique()->safeEmail,
-            'phone_number' => $this->faker->phoneNumber,
-            'address' => $this->faker->address,
+            'phone_number' => $this->faker->phoneNumber(),
+            'address' => $this->faker->streetAddress(),
         ];
     }
 }
