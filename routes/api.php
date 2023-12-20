@@ -35,4 +35,8 @@ Route::delete('/student/{id}', [StudentController::class, 'delete_student']);
 /**
  * Teacher API Routess
  */
-Route::get('/teacher', [TeacherController::class, 'index']);
+Route::get('/teacher', [TeacherController::class, 'list_teachers']);
+Route::post('/teacher', [TeacherController::class, 'create_teacher']);
+Route::get('/teacher/{id}', [TeacherController::class, 'retrieve_teacher']);
+Route::patch('/teacher/{id}', [TeacherController::class, 'patch_teacher']);
+Route::delete('/teacher/{id}', [TeacherController::class, 'delete_teacher']);

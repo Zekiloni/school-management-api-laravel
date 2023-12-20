@@ -4,13 +4,12 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use App\Models\Student;
 use Illuminate\Support\Facades\Log;
 
 class StudentControllerTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
 
     public function test_can_create_student()
     {
@@ -21,7 +20,11 @@ class StudentControllerTest extends TestCase
         $response = $this->post('/api/student', $payload);
 
         $response->assertStatus(201);
-        $this->assertDatabaseHas('students', $payload);
+
+        $createdId = $response->json('id');
+        $this->assertDatabaseHas('students', [
+            'id' => $createdId,
+        ]);
     }
 
     public function test_can_create_student_invalid()

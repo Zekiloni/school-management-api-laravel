@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Models\Student;
 
-
 class StudentService
 {
     /**
