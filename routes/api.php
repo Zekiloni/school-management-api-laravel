@@ -40,3 +40,12 @@ Route::post('/teacher', [TeacherController::class, 'create_teacher']);
 Route::get('/teacher/{id}', [TeacherController::class, 'retrieve_teacher']);
 Route::patch('/teacher/{id}', [TeacherController::class, 'patch_teacher']);
 Route::delete('/teacher/{id}', [TeacherController::class, 'delete_teacher']);
+
+/**
+ * Course API Routess
+ */
+Route::get('/course', [TeacherController::class, 'list_courses']);
+Route::post('/course', [TeacherController::class, 'create_course']);
+Route::get('/course/{id}', [TeacherController::class, 'retrieve_course']);
+Route::patch('/course/{id}', [TeacherController::class, 'patch_course']);
+Route::delete('/course/{id}', [TeacherController::class, 'delete_course']);
