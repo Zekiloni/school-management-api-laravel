@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CourseCreateRequest;
 use App\Http\Requests\CourseUpdateRequest;
-use CourseService;
+use App\Providers\CourseService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 

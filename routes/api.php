@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseConrtoller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,27 +26,33 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 /**
  * Student API Routes
  */
-Route::get('/student', [StudentController::class, 'list_students']);
-Route::post('/student', [StudentController::class, 'create_student']);
-Route::get('/student/{id}', [StudentController::class, 'retrieve_student']);
-Route::patch('/student/{id}', [StudentController::class, 'patch_student']);
-Route::delete('/student/{id}', [StudentController::class, 'delete_student']);
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function ($router) {
+    Route::get('/student', [StudentController::class, 'list_students']);
+    Route::post('/student', [StudentController::class, 'create_student']);
+    Route::get('/student/{id}', [StudentController::class, 'retrieve_student']);
+    Route::patch('/student/{id}', [StudentController::class, 'patch_student']);
+    Route::delete('/student/{id}', [StudentController::class, 'delete_student']);
 
 
-/**
- * Teacher API Routess
- */
-Route::get('/teacher', [TeacherController::class, 'list_teachers']);
-Route::post('/teacher', [TeacherController::class, 'create_teacher']);
-Route::get('/teacher/{id}', [TeacherController::class, 'retrieve_teacher']);
-Route::patch('/teacher/{id}', [TeacherController::class, 'patch_teacher']);
-Route::delete('/teacher/{id}', [TeacherController::class, 'delete_teacher']);
+    /**
+     * Teacher API Routess
+     */
+    Route::get('/teacher', [TeacherController::class, 'list_teachers']);
+    Route::post('/teacher', [TeacherController::class, 'create_teacher']);
+    Route::get('/teacher/{id}', [TeacherController::class, 'retrieve_teacher']);
+    Route::patch('/teacher/{id}', [TeacherController::class, 'patch_teacher']);
+    Route::delete('/teacher/{id}', [TeacherController::class, 'delete_teacher']);
 
-/**
- * Course API Routess
- */
-Route::get('/course', [TeacherController::class, 'list_courses']);
-Route::post('/course', [TeacherController::class, 'create_course']);
-Route::get('/course/{id}', [TeacherController::class, 'retrieve_course']);
-Route::patch('/course/{id}', [TeacherController::class, 'patch_course']);
-Route::delete('/course/{id}', [TeacherController::class, 'delete_course']);
+    /**
+     * Course API Routess
+     */
+    Route::get('/course', [CourseConrtoller::class, 'list_courses']);
+    Route::post('/course', [CourseConrtoller::class, 'create_course']);
+    Route::get('/course/{id}', [CourseConrtoller::class, 'retrieve_course']);
+    Route::patch('/course/{id}', [CourseConrtoller::class, 'patch_course']);
+    Route::delete('/course/{id}', [CourseConrtoller::class, 'delete_course']);
+});

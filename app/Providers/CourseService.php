@@ -1,9 +1,27 @@
 <?php
 
+namespace App\Providers;
+
 use App\Models\Course;
 
 class CourseService
 {
+   /**
+    * Register services.
+    */
+   public function register(): void
+   {
+      //
+   }
+
+   /**
+    * Bootstrap services.
+    */
+   public function boot(): void
+   {
+      //
+   }
+
    public function getAllCourses()
    {
       return Course::all();
